@@ -31,6 +31,7 @@ danych obiektów RDF i ODMG.
 
 %package examples
 Summary:	4Suite examples
+Summary(pl):	Przyk³ady u¿ycia 4Suite
 Group:		Development/Libraries
 %pyrequires_eq	python
 Requires:	%{name} = %{version}
