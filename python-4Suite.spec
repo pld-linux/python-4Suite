@@ -54,7 +54,7 @@ Requires:	%{name} = %{version}
 %description examples
 Examples of 4Suite.
 
-%description examples
+%description examples -l pl
 Przyk³ady u¿ycia 4Suite.
 
 %prep
