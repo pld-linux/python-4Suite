@@ -1,11 +1,12 @@
+%include /usr/lib/rpm/macros.python
 
-%define short_name 4Suite
+%define		short_name	4Suite
 
 Summary:	XML processing tools
 Summary(pl):	Narzêdzia do przetwarzania XML
 Name:		python-%{short_name}
 Version:	0.11.1
-Release:	1
+Release:	2
 License:	Custom
 Group:		Development/Libraries
 Source0:	ftp://ftp.fourthought.com/pub/%{short_name}/%{short_name}-%{version}.tar.gz
@@ -16,8 +17,7 @@ BuildRequires:	python-PyXML
 Requires:	python-PyXML
 %pyrequires_eq	python
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%include /usr/lib/rpm/macros.python
+Obsoletes:	4Suite
 
 %description
 4Suite is a collection of Python tools for XML processing and object
@@ -58,17 +58,13 @@ cp -a demos $RPM_BUILD_ROOT/%{_examplesdir}/%{name}
 cp -a profile $RPM_BUILD_ROOT/%{_examplesdir}/%{name}
 cp -a test_suite $RPM_BUILD_ROOT/%{_examplesdir}/%{name}
 
-gzip -9fn COPYRIGHT PKG-INFO README ReleaseNotes \
-	docs/text/{COPYRIGHT,CREDITS,PACKAGES,README,ReleaseNotes,TODO} \
-	docs/text/howto/*
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz docs
-
+%doc COPYRIGHT PKG-INFO README ReleaseNotes 
+%doc docs/text/{CREDITS,PACKAGES,TODO} docs/text/howto/*
 %{py_sitedir}/_xmlplus/*
 %{py_sitedir}/Ft/
 %attr(755,root,root) %{_bindir}/*
