@@ -18,6 +18,7 @@ Group(uk):	Розробка/Б╕бл╕отеки
 Source0:	ftp://ftp.fourthought.com/pub/%{short_name}/%{short_name}-%{version}.tar.gz
 URL:		http://4suite.org/
 BuildRequires:	python-devel >= 2.0
+BuildRequires:	rpm-pythonprov
 BuildRequires:	python-PyXML
 Requires:	python-PyXML
 %requires_eq	python
