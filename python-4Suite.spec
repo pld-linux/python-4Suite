@@ -17,9 +17,10 @@ Group(ru):	Разработка/Библиотеки
 Group(uk):	Розробка/Б╕бл╕отеки
 Source0:	ftp://ftp.fourthought.com/pub/%{short_name}/%{short_name}-%{version}.tar.gz
 URL:		http://4suite.org/
-BuildRequires:	python >= 2.0
+BuildRequires:	python-devel >= 2.0
 BuildRequires:	python-PyXML
 Requires:	python-PyXML
+%requires_eq	python
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %include /usr/lib/rpm/macros.python
@@ -46,6 +47,8 @@ Group(pl):	Programowanie/Biblioteki
 Group(pt_BR):	Desenvolvimento/Bibliotecas
 Group(ru):	Разработка/Библиотеки
 Group(uk):	Розробка/Б╕бл╕отеки
+%requires_eq	python
+Requires:	%{name} = %{version}
 
 %description examples
 Examples of 4Suite.
