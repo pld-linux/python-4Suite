@@ -5,17 +5,15 @@
 Summary:	XML processing tools
 Summary(pl):	Narzêdzia do przetwarzania XML
 Name:		python-%{short_name}
-Version:	0.11.1
-Release:	2
+Version:	0.12.0a3
+Release:	1
 License:	Custom
 Group:		Development/Libraries
 Source0:	ftp://ftp.fourthought.com/pub/%{short_name}/%{short_name}-%{version}.tar.gz
 URL:		http://4suite.org/
 BuildRequires:	python-devel >= 2.0
 BuildRequires:	rpm-pythonprov
-BuildRequires:	python-PyXML
-Requires:	python-PyXML
-%pyrequires_eq	python
+%pyrequires_eq	python-modules
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	4Suite
 
@@ -65,9 +63,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc COPYRIGHT PKG-INFO README ReleaseNotes 
 %doc docs/text/{CREDITS,PACKAGES,TODO} docs/text/howto/*
+%attr(755,root,root) %{_bindir}/*
 %{py_sitedir}/_xmlplus/*
 %{py_sitedir}/Ft/
-%attr(755,root,root) %{_bindir}/*
 
 %files examples
 %defattr(644,root,root,755)
