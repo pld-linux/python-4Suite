@@ -1,4 +1,3 @@
-%include	/usr/lib/rpm/macros.python
 
 %define		short_name	4Suite
 %define		snap_y		2003
