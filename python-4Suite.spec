@@ -13,8 +13,8 @@ Release:	0.%{snap}.1
 License:	Custom
 Group:		Development/Libraries
 #Source0:	ftp://ftp.fourthought.com/pub/%{short_name}/%{short_name}-%{version}.tar.gz
-Source0:		ftp://ftp.4suite.org/pub/cvs-snapshots/%{snap_y}-%{snap_m}-%{snap_d}-%{short_name}.tar.gz
-# Source0-md5:	1385d25b39b15bce4fb232819e09b84b
+Source0:	ftp://ftp.4suite.org/pub/cvs-snapshots/%{snap_y}-%{snap_m}-%{snap_d}-%{short_name}.tar.gz
+# Source0-md5:	bd8400a0468f18523b99078febbf9cd9
 URL:		http://4suite.org/
 BuildRequires:	python-devel >= 2.0
 BuildRequires:	rpm-pythonprov
@@ -63,7 +63,6 @@ bindir = %{_bindir}
 EOF
 
 %build
-
 CFLAGS="%{rpmcflags}" python setup.py build --with-docs
 
 %install
@@ -78,9 +77,8 @@ cp -a demos $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 cp -a profile $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 cp -a test $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 
-
 %clean
-#rm -rf $RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
@@ -91,7 +89,6 @@ cp -a test $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 %{_libdir}/4Suite
 %{_datadir}/4Suite
 %{_var}/lib/4Suite
-
 
 %files examples
 %defattr(644,root,root,755)
