@@ -1,16 +1,19 @@
 %include /usr/lib/rpm/macros.python
 
 %define		short_name	4Suite
-
+%define		snap_y	2003
+%define		snap_m	08
+%define		snap_d	06
+%define		snap	%{snap_y}%{snap_m}%{snap_d}
 Summary:	XML processing tools
 Summary(pl):	Narzêdzia do przetwarzania XML
 Name:		python-%{short_name}
-Version:	0.12.0a3
-Release:	1
+Version:	1.0
+Release:	0.%{snap}.1
 License:	Custom
 Group:		Development/Libraries
-Source0:	ftp://ftp.fourthought.com/pub/%{short_name}/%{short_name}-%{version}.tar.gz
-# Source0-md5:	13a107811ff5e572eb7aab22a2cca4a9
+#Source0:	ftp://ftp.fourthought.com/pub/%{short_name}/%{short_name}-%{version}.tar.gz
+Source:		ftp://ftp.4suite.org/pub/cvs-snapshots/%{snap_y}-%{snap_m}-%{snap_d}-%{short_name}.tar.gz
 URL:		http://4suite.org/
 BuildRequires:	python-devel >= 2.0
 BuildRequires:	rpm-pythonprov
@@ -44,19 +47,36 @@ Examples of 4Suite.
 Przyk³ady u¿ycia 4Suite.
 
 %prep
-%setup -q -n %{short_name}-%{version}
+%setup -q -n %{short_name}
+cat > config.cache <<EOF
+[linux-i686-2.3]
+docdir = %{_datadir}/doc/%{name}-%{version}
+pythonlibdir = %{py_sitedir}
+sysconfdir = %{_sysconfdir}
+exec_prefix = 
+libdir = %{_libdir}/%{short_name}
+datadir = %{_datadir}/%{short_name}
+localstatedir = %{_var}/lib/%{short_name}
+prefix = 
+bindir = %{_bindir}
+EOF
 
 %build
+
 CFLAGS="%{rpmcflags}" python setup.py build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 
-python setup.py install --root=$RPM_BUILD_ROOT --record=INSTALLED_FILES
+mv config.cache cc
+cat cc | sed -e "s#/usr/local#/usr#" > config.cache
+
+python setup.py install --root=$RPM_BUILD_ROOT 
 cp -a demos $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 cp -a profile $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 cp -a test $RPM_BUILD_ROOT%{_examplesdir}/%{name}
+
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -65,6 +85,12 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc docs/xml
 %{py_sitedir}/Ft
+%attr(755,root,root) %{_bindir}/*
+%{_sysconfdir}/4ss.conf
+%{_libdir}/4Suite
+%{_datadir}/4Suite
+%{_var}/lib/4Suite
+
 
 %files examples
 %defattr(644,root,root,755)
