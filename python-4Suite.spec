@@ -1,5 +1,5 @@
+
 %define short_name 4Suite
-%define python_sitepkgsdir %(echo `python -c "import sys; print (sys.prefix + '/lib/python' + sys.version[:3] + '/site-packages/')"`)
 
 Summary:	XML processing tools
 Summary(pl):	Narzêdzia do przetwarzania XML
@@ -21,6 +21,8 @@ BuildRequires:	python >= 2.0
 BuildRequires:	python-PyXML
 Requires:	python-PyXML
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%include /usr/lib/rpm/macros.python
 
 %description
 4Suite is a collection of Python tools for XML processing and object
@@ -77,8 +79,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc *.gz docs
 
-%{python_sitepkgsdir}/_xmlplus/*
-%{python_sitepkgsdir}/Ft/
+%{py_sitedir}/_xmlplus/*
+%{py_sitedir}/Ft/
 %attr(755,root,root) %{_bindir}/*
 
 %files examples
