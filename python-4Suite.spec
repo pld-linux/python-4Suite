@@ -10,6 +10,7 @@ Release:	1
 License:	Custom
 Group:		Development/Libraries
 Source0:	ftp://ftp.fourthought.com/pub/%{short_name}/%{short_name}-%{version}.tar.gz
+# Source0-md5:	13a107811ff5e572eb7aab22a2cca4a9
 URL:		http://4suite.org/
 BuildRequires:	python-devel >= 2.0
 BuildRequires:	rpm-pythonprov
