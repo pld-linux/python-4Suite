@@ -6,7 +6,6 @@ Summary(pl):	NarzЙdzia do przetwarzania XML
 Name:		python-%{short_name}
 Version:	0.11.1
 Release:	1
-Source0:	ftp://ftp.fourthought.com/pub/%{short_name}/%{short_name}-%{version}.tar.gz
 License:	Custom
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
@@ -16,11 +15,12 @@ Group(pl):	Programowanie/Biblioteki
 Group(pt_BR):	Desenvolvimento/Bibliotecas
 Group(ru):	Разработка/Библиотеки
 Group(uk):	Розробка/Б╕бл╕отеки
+Source0:	ftp://ftp.fourthought.com/pub/%{short_name}/%{short_name}-%{version}.tar.gz
+URL:		http://4suite.org/
 BuildRequires:	python >= 2.0
 BuildRequires:	python-PyXML
 Requires:	python-PyXML
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-Url:		http://4suite.org/
 
 %description
 4Suite is a collection of Python tools for XML processing and object
@@ -60,14 +60,15 @@ CFLAGS="%{rpmcflags}" python setup.py build
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/%{_examplesdir}/%{name}
+
 python setup.py install --root=$RPM_BUILD_ROOT --record=INSTALLED_FILES
 cp -a demos $RPM_BUILD_ROOT/%{_examplesdir}/%{name}
 cp -a profile $RPM_BUILD_ROOT/%{_examplesdir}/%{name}
 cp -a test_suite $RPM_BUILD_ROOT/%{_examplesdir}/%{name}
 
-gzip -9fn COPYRIGHT PKG-INFO README ReleaseNotes
-gzip -9fn docs/text/{COPYRIGHT,CREDITS,PACKAGES,README,ReleaseNotes,TODO}
-gzip -9fn docs/text/howto/*
+gzip -9fn COPYRIGHT PKG-INFO README ReleaseNotes \
+	docs/text/{COPYRIGHT,CREDITS,PACKAGES,README,ReleaseNotes,TODO} \
+	docs/text/howto/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
