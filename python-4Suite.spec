@@ -3,18 +3,18 @@
 %define		short_name	4Suite
 %define		snap_y	2003
 %define		snap_m	08
-%define		snap_d	06
+%define		snap_d	08
 %define		snap	%{snap_y}%{snap_m}%{snap_d}
 Summary:	XML processing tools
 Summary(pl):	Narzêdzia do przetwarzania XML
 Name:		python-%{short_name}
 Version:	1.0
-Release:	0.%{snap}.2
+Release:	0.%{snap}.1
 License:	Custom
 Group:		Development/Libraries
 #Source0:	ftp://ftp.fourthought.com/pub/%{short_name}/%{short_name}-%{version}.tar.gz
 Source0:		ftp://ftp.4suite.org/pub/cvs-snapshots/%{snap_y}-%{snap_m}-%{snap_d}-%{short_name}.tar.gz
-# Source0-md5:	25d0e11c1cb22085ddd1c3ccc4d20aeb
+# Source0-md5:	1385d25b39b15bce4fb232819e09b84b
 URL:		http://4suite.org/
 BuildRequires:	python-devel >= 2.0
 BuildRequires:	rpm-pythonprov
@@ -80,7 +80,7 @@ cp -a test $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+#rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
