@@ -54,11 +54,11 @@ cat > config.cache <<EOF
 docdir = %{_datadir}/doc/%{name}-%{version}
 pythonlibdir = %{py_sitedir}
 sysconfdir = %{_sysconfdir}
-exec_prefix = 
+exec_prefix =
 libdir = %{_libdir}/%{short_name}
 datadir = %{_datadir}/%{short_name}
 localstatedir = %{_var}/lib/%{short_name}
-prefix = 
+prefix =
 bindir = %{_bindir}
 EOF
 
