@@ -16,7 +16,6 @@ Source0:	ftp://ftp.4suite.org/pub/cvs-snapshots/%{snap_y}-%{snap_m}-%{snap_d}-%{
 # Source0-md5:	bd8400a0468f18523b99078febbf9cd9
 URL:		http://4suite.org/
 BuildRequires:	python-devel >= 2.0
-BuildRequires:	rpm-pythonprov
 %pyrequires_eq	python-modules
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	4Suite
