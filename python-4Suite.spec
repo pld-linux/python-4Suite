@@ -49,23 +49,20 @@ CFLAGS="%{rpmcflags}" python setup.py build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/%{_examplesdir}/%{name}
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 
 python setup.py install --root=$RPM_BUILD_ROOT --record=INSTALLED_FILES
-cp -a demos $RPM_BUILD_ROOT/%{_examplesdir}/%{name}
-cp -a profile $RPM_BUILD_ROOT/%{_examplesdir}/%{name}
-cp -a test_suite $RPM_BUILD_ROOT/%{_examplesdir}/%{name}
+cp -a demos $RPM_BUILD_ROOT%{_examplesdir}/%{name}
+cp -a profile $RPM_BUILD_ROOT%{_examplesdir}/%{name}
+cp -a test $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc COPYRIGHT PKG-INFO README ReleaseNotes 
-%doc docs/text/{CREDITS,PACKAGES,TODO} docs/text/howto/*
-%attr(755,root,root) %{_bindir}/*
-%{py_sitedir}/_xmlplus/*
-%{py_sitedir}/Ft/
+%doc docs/xml
+%{py_sitedir}/Ft
 
 %files examples
 %defattr(644,root,root,755)
