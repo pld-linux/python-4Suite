@@ -1,10 +1,10 @@
-%include /usr/lib/rpm/macros.python
+%include	/usr/lib/rpm/macros.python
 
 %define		short_name	4Suite
-%define		snap_y	2003
-%define		snap_m	08
-%define		snap_d	08
-%define		snap	%{snap_y}%{snap_m}%{snap_d}
+%define		snap_y		2003
+%define		snap_m		08
+%define		snap_d		08
+%define		snap		%{snap_y}%{snap_m}%{snap_d}
 Summary:	XML processing tools
 Summary(pl):	Narzêdzia do przetwarzania XML-a
 Name:		python-%{short_name}
