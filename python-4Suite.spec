@@ -6,7 +6,7 @@
 %define		snap_d	08
 %define		snap	%{snap_y}%{snap_m}%{snap_d}
 Summary:	XML processing tools
-Summary(pl):	Narzêdzia do przetwarzania XML
+Summary(pl):	Narzêdzia do przetwarzania XML-a
 Name:		python-%{short_name}
 Version:	1.0
 Release:	0.%{snap}.1
@@ -29,10 +29,10 @@ transient and persistent DOM implementations, XPath expressions,
 XPointer, XSLT transforms, XLink, RDF and ODMG object databases
 
 %description -l pl
-4Suite do zestaw narzêdzi Python'a do przetwarzania XML i zarz±dzania
-baz± danych obiektów. Dostarcza wsparcie dla parsowania XML, kilku
-implementacji DOM, wyra¿eñ XPath, XPointer, przekszta³ceñ XSLT, baz
-danych obiektów RDF i ODMG.
+4Suite do zestaw narzêdzi Python'a do przetwarzania XML-a i
+zarz±dzania baz± danych obiektów. Dostarcza wsparcie dla analizy
+sk³adniowej XML-a, kilku implementacji DOM, wyra¿eñ XPath, XPointer,
+przekszta³ceñ XSLT, baz danych obiektów RDF i ODMG.
 
 %package examples
 Summary:	4Suite examples
