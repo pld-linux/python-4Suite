@@ -14,7 +14,7 @@ BuildRequires:	python-devel >= 2.0
 BuildRequires:	rpm-pythonprov
 BuildRequires:	python-PyXML
 Requires:	python-PyXML
-%requires_eq	python
+%pyrequires_eq	python
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %include /usr/lib/rpm/macros.python
@@ -34,7 +34,7 @@ danych obiektów RDF i ODMG.
 %package examples
 Summary:	4Suite examples
 Group:		Development/Libraries
-%requires_eq	python
+%pyrequires_eq	python
 Requires:	%{name} = %{version}
 
 %description examples
