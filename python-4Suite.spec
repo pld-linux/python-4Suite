@@ -9,11 +9,12 @@ Summary:	XML processing tools
 Summary(pl):	Narzêdzia do przetwarzania XML
 Name:		python-%{short_name}
 Version:	1.0
-Release:	0.%{snap}.1
+Release:	0.%{snap}.2
 License:	Custom
 Group:		Development/Libraries
 #Source0:	ftp://ftp.fourthought.com/pub/%{short_name}/%{short_name}-%{version}.tar.gz
-Source:		ftp://ftp.4suite.org/pub/cvs-snapshots/%{snap_y}-%{snap_m}-%{snap_d}-%{short_name}.tar.gz
+Source0:		ftp://ftp.4suite.org/pub/cvs-snapshots/%{snap_y}-%{snap_m}-%{snap_d}-%{short_name}.tar.gz
+# Source0-md5:	25d0e11c1cb22085ddd1c3ccc4d20aeb
 URL:		http://4suite.org/
 BuildRequires:	python-devel >= 2.0
 BuildRequires:	rpm-pythonprov
@@ -63,7 +64,7 @@ EOF
 
 %build
 
-CFLAGS="%{rpmcflags}" python setup.py build
+CFLAGS="%{rpmcflags}" python setup.py build --with-docs
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -72,7 +73,7 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 mv config.cache cc
 cat cc | sed -e "s#/usr/local#/usr#" > config.cache
 
-python setup.py install --root=$RPM_BUILD_ROOT 
+python setup.py install --root=$RPM_BUILD_ROOT --with-docs
 cp -a demos $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 cp -a profile $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 cp -a test $RPM_BUILD_ROOT%{_examplesdir}/%{name}
