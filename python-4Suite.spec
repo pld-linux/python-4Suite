@@ -17,6 +17,7 @@ Group(pt_BR):	Desenvolvimento/Bibliotecas
 Group(ru):	Разработка/Библиотеки
 Group(uk):	Розробка/Б╕бл╕отеки
 BuildRequires:	python >= 2.0
+BuildRequires:	python-PyXML
 Requires:	python-PyXML
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Url:		http://4suite.org/
