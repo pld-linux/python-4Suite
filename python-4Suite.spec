@@ -1,19 +1,17 @@
+# TODO:
+# - external expat
 
 %define		short_name	4Suite
-%define		snap_y		2003
-%define		snap_m		08
-%define		snap_d		08
-%define		snap		%{snap_y}%{snap_m}%{snap_d}
 Summary:	XML processing tools
 Summary(pl):	Narzêdzia do przetwarzania XML-a
 Name:		python-%{short_name}
 Version:	1.0
-Release:	0.%{snap}.1
+%define	_rc	b1
+Release:	0.%{_rc}.1
 License:	Custom
 Group:		Development/Libraries
-#Source0:	ftp://ftp.fourthought.com/pub/%{short_name}/%{short_name}-%{version}.tar.gz
-Source0:	ftp://ftp.4suite.org/pub/cvs-snapshots/%{snap_y}-%{snap_m}-%{snap_d}-%{short_name}.tar.gz
-# Source0-md5:	bd8400a0468f18523b99078febbf9cd9
+Source0:	ftp://ftp.4suite.org/pub/4Suite/%{short_name}-%{version}%{_rc}.tar.bz2
+# Source0-md5:	d512d79dcbe08584d0b5ba4c9704a820
 URL:		http://4suite.org/
 BuildRequires:	python-devel >= 2.0
 %pyrequires_eq	python-modules
@@ -46,31 +44,35 @@ Examples of 4Suite.
 Przyk³ady u¿ycia 4Suite.
 
 %prep
-%setup -q -n %{short_name}
+%setup -q -n %{short_name}-%{version}%{_rc}
+
 cat > config.cache <<EOF
-[linux-i686-2.3]
+[linux-%{_target_cpu}-%{py_ver}]
 docdir = %{_datadir}/doc/%{name}-%{version}
 pythonlibdir = %{py_sitedir}
 sysconfdir = %{_sysconfdir}
 exec_prefix =
 libdir = %{_libdir}/%{short_name}
 datadir = %{_datadir}/%{short_name}
+localedir = %{_datadir}/locale
 localstatedir = %{_var}/lib/%{short_name}
 prefix =
 bindir = %{_bindir}
 EOF
 
 %build
-CFLAGS="%{rpmcflags}" python setup.py build --with-docs
+CFLAGS="%{rpmcflags}" python setup.py build
+
+grep -q "/usr/local" config.cache && exit 1
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 
-mv config.cache cc
-cat cc | sed -e "s#/usr/local#/usr#" > config.cache
+python setup.py install \
+	--optimize=2 \
+	--root=$RPM_BUILD_ROOT
 
-python setup.py install --root=$RPM_BUILD_ROOT --with-docs
 cp -a demos $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 cp -a profile $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 cp -a test $RPM_BUILD_ROOT%{_examplesdir}/%{name}
