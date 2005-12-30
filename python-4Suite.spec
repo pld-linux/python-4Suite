@@ -12,6 +12,7 @@ License:	Custom
 Group:		Development/Libraries
 Source0:	ftp://ftp.4suite.org/pub/4Suite/%{short_name}-%{version}%{_rc}.tar.bz2
 # Source0-md5:	d512d79dcbe08584d0b5ba4c9704a820
+Patch0:		%{name}-root.patch
 URL:		http://4suite.org/
 BuildRequires:	python-devel >= 2.0
 %pyrequires_eq	python-modules
@@ -45,6 +46,7 @@ Przyk³ady u¿ycia 4Suite.
 
 %prep
 %setup -q -n %{short_name}-%{version}%{_rc}
+%patch0 -p1
 
 cat > config.cache <<EOF
 [linux-%{_target_cpu}-%{py_ver}]
@@ -69,9 +71,15 @@ grep -q "/usr/local" config.cache && exit 1
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 
+echo "root = $RPM_BUILD_ROOT" >> config.cache
+
 python setup.py install \
 	--optimize=2 \
 	--root=$RPM_BUILD_ROOT
+
+%py_ocomp $RPM_BUILD_ROOT
+%py_comp $RPM_BUILD_ROOT
+%py_postclean
 
 cp -a demos $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 cp -a profile $RPM_BUILD_ROOT%{_examplesdir}/%{name}
