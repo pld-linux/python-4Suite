@@ -71,8 +71,6 @@ grep -q "/usr/local" config.cache && exit 1
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 
-echo "root = $RPM_BUILD_ROOT" >> config.cache
-
 python setup.py install \
 	--optimize=2 \
 	--root=$RPM_BUILD_ROOT
