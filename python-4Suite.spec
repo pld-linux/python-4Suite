@@ -48,8 +48,8 @@ Przyk³ady u¿ycia 4Suite.
 %setup -q -n %{short_name}-%{version}%{_rc}
 %patch0 -p1
 
-cat > config.cache <<EOF
-[linux-%{_target_cpu}-%{py_ver}]
+python -c 'from distutils.util import get_platform; import sys; print "[%s-%.3s]" % (get_platform(), sys.version)' > config.cache
+cat >> config.cache <<EOF
 docdir = %{_datadir}/doc/%{name}-%{version}
 pythonlibdir = %{py_sitedir}
 sysconfdir = %{_sysconfdir}
