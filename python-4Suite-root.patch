@@ -1,0 +1,12 @@
+diff -ur 4Suite-1.0b1.org/Ft/Lib/DistExt/Install.py 4Suite-1.0b1/Ft/Lib/DistExt/Install.py
+--- 4Suite-1.0b1.org/Ft/Lib/DistExt/Install.py	2004-10-10 08:11:40.000000000 +0200
++++ 4Suite-1.0b1/Ft/Lib/DistExt/Install.py	2005-12-30 14:56:23.560963000 +0100
+@@ -20,6 +20,8 @@
+         # Miscellaneous control options
+         ('force', 'f',
+          "force installation (overwrite any existing files)"),
++	('root=', None,
++	 "install everything relative to this alternate root directory"),
+         ('skip-build', None,
+          "skip rebuilding everything (for testing/debugging)"),
+ 
