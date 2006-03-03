@@ -6,12 +6,12 @@ Summary:	XML processing tools
 Summary(pl):	Narzêdzia do przetwarzania XML-a
 Name:		python-%{short_name}
 Version:	1.0
-%define	_rc	b1
+%define	_rc	b3
 Release:	0.%{_rc}.1
 License:	Custom
 Group:		Development/Libraries
-Source0:	ftp://ftp.4suite.org/pub/4Suite/%{short_name}-%{version}%{_rc}.tar.bz2
-# Source0-md5:	d512d79dcbe08584d0b5ba4c9704a820
+Source0:	ftp://ftp.4suite.org/pub/4Suite/%{short_name}-XML-%{version}%{_rc}.tar.bz2
+# Source0-md5:	9decb8b1032415ae155fe9a917fe8126
 Patch0:		%{name}-root.patch
 URL:		http://4suite.org/
 BuildRequires:	python-devel >= 2.0
@@ -51,6 +51,7 @@ Przyk³ady u¿ycia 4Suite.
 python -c 'from distutils.util import get_platform; import sys; print "[%s-%.3s]" % (get_platform(), sys.version)' > config.cache
 cat >> config.cache <<EOF
 docdir = %{_datadir}/doc/%{name}-%{version}
+mandir = %{_mandir}
 pythonlibdir = %{py_sitedir}
 sysconfdir = %{_sysconfdir}
 exec_prefix =
@@ -91,10 +92,10 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/xml
 %{py_sitedir}/Ft
 %attr(755,root,root) %{_bindir}/*
-%{_sysconfdir}/4ss.conf
+#%{_sysconfdir}/4ss.conf
 %{_libdir}/4Suite
 %{_datadir}/4Suite
-%{_var}/lib/4Suite
+#%{_var}/lib/4Suite
 
 %files examples
 %defattr(644,root,root,755)
