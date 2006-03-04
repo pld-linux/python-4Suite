@@ -1,6 +1,5 @@
 # TODO:
 # - external expat
-
 %define		short_name	4Suite
 Summary:	XML processing tools
 Summary(pl):	Narzêdzia do przetwarzania XML-a
@@ -14,10 +13,12 @@ Source0:	ftp://ftp.4suite.org/pub/4Suite/%{short_name}-XML-%{version}%{_rc}.tar.
 # Source0-md5:	9decb8b1032415ae155fe9a917fe8126
 Patch0:		%{name}-root.patch
 URL:		http://4suite.org/
+BuildRequires:	pydoc
 BuildRequires:	python-devel >= 2.0
+BuildRequires:	rpm-pythonprov
 %pyrequires_eq	python-modules
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	4Suite
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 4Suite is a collection of Python tools for XML processing and object
@@ -65,7 +66,6 @@ EOF
 
 %build
 CFLAGS="%{rpmcflags}" python setup.py build
-
 grep -q "/usr/local" config.cache && exit 1
 
 %install
