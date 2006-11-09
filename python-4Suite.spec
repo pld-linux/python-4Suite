@@ -1,11 +1,11 @@
 # TODO:
 # - external expat
 %define		short_name	4Suite
+%define	_rc	b3
 Summary:	XML processing tools
 Summary(pl):	Narzêdzia do przetwarzania XML-a
 Name:		python-%{short_name}
 Version:	1.0
-%define	_rc	b3
 Release:	0.%{_rc}.1
 License:	Custom
 Group:		Development/Libraries
@@ -37,7 +37,7 @@ Summary:	4Suite examples
 Summary(pl):	Przyk³ady u¿ycia 4Suite
 Group:		Development/Libraries
 %pyrequires_eq	python
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description examples
 Examples of 4Suite.
