@@ -3,7 +3,7 @@
 %define		short_name	4Suite
 %define	_rc	b3
 Summary:	XML processing tools
-Summary(pl):	NarzÍdzia do przetwarzania XML-a
+Summary(pl.UTF-8):   Narzƒôdzia do przetwarzania XML-a
 Name:		python-%{short_name}
 Version:	1.0
 Release:	0.%{_rc}.1
@@ -26,15 +26,15 @@ database management. It provides support for XML parsing, several
 transient and persistent DOM implementations, XPath expressions,
 XPointer, XSLT transforms, XLink, RDF and ODMG object databases
 
-%description -l pl
-4Suite do zestaw narzÍdzi Python'a do przetwarzania XML-a i
-zarz±dzania baz± danych obiektÛw. Dostarcza wsparcie dla analizy
-sk≥adniowej XML-a, kilku implementacji DOM, wyraøeÒ XPath, XPointer,
-przekszta≥ceÒ XSLT, baz danych obiektÛw RDF i ODMG.
+%description -l pl.UTF-8
+4Suite do zestaw narzƒôdzi Python'a do przetwarzania XML-a i
+zarzƒÖdzania bazƒÖ danych obiekt√≥w. Dostarcza wsparcie dla analizy
+sk≈Çadniowej XML-a, kilku implementacji DOM, wyra≈ºe≈Ñ XPath, XPointer,
+przekszta≈Çce≈Ñ XSLT, baz danych obiekt√≥w RDF i ODMG.
 
 %package examples
 Summary:	4Suite examples
-Summary(pl):	Przyk≥ady uøycia 4Suite
+Summary(pl.UTF-8):   Przyk≈Çady u≈ºycia 4Suite
 Group:		Development/Libraries
 %pyrequires_eq	python
 Requires:	%{name} = %{version}-%{release}
@@ -42,8 +42,8 @@ Requires:	%{name} = %{version}-%{release}
 %description examples
 Examples of 4Suite.
 
-%description examples -l pl
-Przyk≥ady uøycia 4Suite.
+%description examples -l pl.UTF-8
+Przyk≈Çady u≈ºycia 4Suite.
 
 %prep
 %setup -q -n %{short_name}-%{version}%{_rc}
