@@ -3,7 +3,7 @@
 %define		short_name	4Suite
 %define	_rc	b3
 Summary:	XML processing tools
-Summary(pl.UTF-8):   Narzędzia do przetwarzania XML-a
+Summary(pl.UTF-8):	Narzędzia do przetwarzania XML-a
 Name:		python-%{short_name}
 Version:	1.0
 Release:	0.%{_rc}.1
@@ -34,7 +34,7 @@ przekształceń XSLT, baz danych obiektów RDF i ODMG.
 
 %package examples
 Summary:	4Suite examples
-Summary(pl.UTF-8):   Przykłady użycia 4Suite
+Summary(pl.UTF-8):	Przykłady użycia 4Suite
 Group:		Development/Libraries
 %pyrequires_eq	python
 Requires:	%{name} = %{version}-%{release}
