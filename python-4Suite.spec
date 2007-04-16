@@ -1,17 +1,19 @@
 # TODO:
 # - external expat
+# - egg-info
+# - -devel package
+# - remove -root patch after full release
 %define		short_name	4Suite
-%define	_rc	b3
+#
 Summary:	XML processing tools
 Summary(pl.UTF-8):	Narzędzia przetwarzania XML-a
 Name:		python-%{short_name}
-Version:	1.0
-Release:	0.%{_rc}.1
+Version:	1.0.2
+Release:	0.1
 License:	Custom
 Group:		Libraries/Python
-Source0:	ftp://ftp.4suite.org/pub/4Suite/%{short_name}-XML-%{version}%{_rc}.tar.bz2
-# Source0-md5:	9decb8b1032415ae155fe9a917fe8126
-Patch0:		%{name}-root.patch
+Source0:	ftp://ftp.4suite.org/pub/4Suite/%{short_name}-XML-%{version}.tar.bz2
+# Source0-md5:	b3e976a666899113d58f333518205968
 URL:		http://4suite.org/
 BuildRequires:	pydoc
 BuildRequires:	python-devel >= 2.0
@@ -46,53 +48,60 @@ Examples of 4Suite.
 %description examples -l pl.UTF-8
 Przykłady użycia 4Suite.
 
-%prep
-%setup -q -n %{short_name}-%{version}%{_rc}
-%patch0 -p1
+%package -n %{short_name}-tools
+Summary:	4Suite tools
+Summary(pl.UTF8):	Narzędzia 4Suite
+Group:		Applications
+%pyrequires_eq	python
+Requires:	%{name} = %{version}-%{release}
 
-python -c 'from distutils.util import get_platform; import sys; print "[%s-%.3s]" % (get_platform(), sys.version)' > config.cache
-cat >> config.cache <<EOF
-docdir = %{_datadir}/doc/%{name}-%{version}
-mandir = %{_mandir}
-pythonlibdir = %{py_sitedir}
-sysconfdir = %{_sysconfdir}
-exec_prefix =
-libdir = %{_libdir}/%{short_name}
-datadir = %{_datadir}/%{short_name}
-localedir = %{_datadir}/locale
-localstatedir = %{_var}/lib/%{short_name}
-prefix =
-bindir = %{_bindir}
-EOF
+%description -n %{short_name}-tools
+4Suite command-line tools:
+
+   * 4xml: XML document parsing and reserialization.
+   * 4xpath: XPath expression evaluation.
+   * 4xslt: XSLT processing engine.
+   * 4xupdate: XUpdate processing.
+
+%description -n %{short_name}-tools -l pl.UTF-8
+Narzędzia CLI 4Suite:
+
+   * 4xml: analiza i reserializacja dokumentów XML.
+   * 4xpath: rozwiązywanie wyrażeń XPath.
+   * 4xslt: silnik przetwarzania XSLT.
+   * 4xupdate: Przetwarzanie XUpdate.
+
+%prep
+%setup -q -n %{short_name}-XML-%{version}
 
 %build
-CFLAGS="%{rpmcflags}" python setup.py build
-grep -q "/usr/local" config.cache && exit 1
+export CFLAGS="%{rpmcflags}"
+python setup.py build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 python setup.py install \
 	--optimize=2 \
-	--root=$RPM_BUILD_ROOT
+	--root=$RPM_BUILD_ROOT \
+	--install-docs=%{_datadir}/doc/%{name}-%{version} \
+	--install-headers=%{_includedir}/4Suite \
+	--system
+find $RPM_BUILD_ROOT/%{_bindir} -type f -exec sed -i -e 's|#!.*python.*|#!%{_bindir}/python|g' "{}" ";"
 
-%py_ocomp $RPM_BUILD_ROOT
-%py_comp $RPM_BUILD_ROOT
 %py_postclean
 
-cp -a demos $RPM_BUILD_ROOT%{_examplesdir}/%{name}
-cp -a profile $RPM_BUILD_ROOT%{_examplesdir}/%{name}
-cp -a test $RPM_BUILD_ROOT%{_examplesdir}/%{name}
+cp -a profile $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+cp -a test $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc docs/xml
+%doc %{_datadir}/doc/%{name}-%{version}
 %{py_sitedir}/Ft
-%attr(755,root,root) %{_bindir}/*
 #%{_sysconfdir}/4ss.conf
 %{_libdir}/4Suite
 %{_datadir}/4Suite
@@ -100,4 +109,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files examples
 %defattr(644,root,root,755)
-%{_examplesdir}/%{name}
+%{_examplesdir}/%{name}-%{version}
+
+%files -n %{short_name}-tools
+%defattr(755,root,root,755)
+%{_bindir}/*
