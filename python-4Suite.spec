@@ -3,12 +3,12 @@
 %define		short_name	4Suite
 %define	_rc	b3
 Summary:	XML processing tools
-Summary(pl.UTF-8):	Narzędzia do przetwarzania XML-a
+Summary(pl.UTF-8):	Narzędzia przetwarzania XML-a
 Name:		python-%{short_name}
 Version:	1.0
 Release:	0.%{_rc}.1
 License:	Custom
-Group:		Development/Libraries
+Group:		Libraries/Python
 Source0:	ftp://ftp.4suite.org/pub/4Suite/%{short_name}-XML-%{version}%{_rc}.tar.bz2
 # Source0-md5:	9decb8b1032415ae155fe9a917fe8126
 Patch0:		%{name}-root.patch
@@ -16,6 +16,7 @@ URL:		http://4suite.org/
 BuildRequires:	pydoc
 BuildRequires:	python-devel >= 2.0
 BuildRequires:	rpm-pythonprov
+BuildRequires:	rpmbuild(macros) >= 1.219
 %pyrequires_eq	python-modules
 Obsoletes:	4Suite
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -27,7 +28,7 @@ transient and persistent DOM implementations, XPath expressions,
 XPointer, XSLT transforms, XLink, RDF and ODMG object databases
 
 %description -l pl.UTF-8
-4Suite do zestaw narzędzi Python'a do przetwarzania XML-a i
+4Suite jest zestawem narzędzi języka Python do przetwarzania XML-a i
 zarządzania bazą danych obiektów. Dostarcza wsparcie dla analizy
 składniowej XML-a, kilku implementacji DOM, wyrażeń XPath, XPointer,
 przekształceń XSLT, baz danych obiektów RDF i ODMG.
@@ -35,7 +36,7 @@ przekształceń XSLT, baz danych obiektów RDF i ODMG.
 %package examples
 Summary:	4Suite examples
 Summary(pl.UTF-8):	Przykłady użycia 4Suite
-Group:		Development/Libraries
+Group:		Libraries/Python
 %pyrequires_eq	python
 Requires:	%{name} = %{version}-%{release}
 
