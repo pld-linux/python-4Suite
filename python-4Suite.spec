@@ -50,7 +50,7 @@ Przykłady użycia 4Suite.
 
 %package -n %{short_name}-tools
 Summary:	4Suite tools
-Summary(pl.UTF8):	Narzędzia 4Suite
+Summary(pl.UTF-8):	Narzędzia 4Suite
 Group:		Applications
 %pyrequires_eq	python
 Requires:	%{name} = %{version}-%{release}
