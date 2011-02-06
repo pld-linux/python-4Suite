@@ -112,5 +112,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_examplesdir}/%{name}-%{version}
 
 %files -n %{short_name}-tools
-%defattr(755,root,root,755)
-%{_bindir}/*
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/*
