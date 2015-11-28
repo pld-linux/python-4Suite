@@ -75,16 +75,13 @@ Narzędzia CLI 4Suite:
 %setup -q -n %{short_name}-XML-%{version}
 
 %build
-export CFLAGS="%{rpmcflags}"
-python setup.py build
+%py_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-python setup.py install \
-	--optimize=2 \
-	--root=$RPM_BUILD_ROOT \
+%py_install \
 	--install-docs=%{_datadir}/doc/%{name}-%{version} \
 	--install-headers=%{_includedir}/4Suite \
 	--system
