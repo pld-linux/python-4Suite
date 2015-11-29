@@ -18,7 +18,7 @@ URL:		http://4suite.org/
 BuildRequires:	pydoc
 BuildRequires:	python-devel >= 2.0
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.219
+BuildRequires:	rpmbuild(macros) >= 1.710
 %pyrequires_eq	python-modules
 Obsoletes:	4Suite
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
